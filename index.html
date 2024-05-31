@@ -1,0 +1,22 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Converter for Colemak-DH</title>
+<p>Type here to convert from QWERTY to Colemak-DH</p>
+<textarea rows="8" cols="80" id="txt0"></textarea>
+<br>
+<p>Type here to convert from Colemak-DH to QWERTY</p>
+<textarea rows="8" cols="80" id="txt1"></textarea>
+<script>
+  const QWERTY = "qwertyuiopasdfghjkl;zxcvbnmQWERTYUIOPASDFGHJKL:ZXCVBNM";
+  const COLEMAKDH = "qwfpbjluy;arstgkneioxcdvzmhQWFPBJLUY:ARSTGKNEIOXCDVZMH";
+  
+  let txt0 = document.getElementById('txt0');
+  let txt1 = document.getElementById('txt1');
+
+  txt0.oninput = e => txt1.value = trans(e.target.data, QWERTY, COLEMAKDH);
+  txt1.oninput = e => txt0.value = trans(e.target.data, COLEMAKDH, QWERTY);
+
+  function trans(str, dict0, dict1) {
+    return str.split('').map(l => dict1.charAt(dict0.indexOf(l)));
+  }
+</script>
